@@ -12,34 +12,45 @@ type playerMap map[string]int
 func main(){
 	var draftOrder [10]string
 	rand.Seed(time.Now().UTC().UnixNano())
-	draftees := []string{"Will", "Ron", "Greg", "Steve", "Derek", "Cameron", "Brandon", "Bryant", "JoshT", "JoshL"}
+	var tallies [2]int
+	for i := 0; i < 1000; i++ {
+		draftees := []string{"Will", "Ron", "Greg", "Steve", "Derek", "Cameron", "Brandon", "Bryant", "JoshT", "JoshL"}
 
-	m :=  map[string]int{
-		"Will"		: 3,
-		"Ron" 		: 3,
-		"Greg" 		: 1,
-		"Steve" 	: 1,
-		"Derek" 	: 1,
-		"Cameron" 	: 1,
-		"Brandon" 	: 1,
-		"Bryant" 	: 1,
-		"JoshT" 	: 1,
-		"JoshL" 	: 1,
+		m := map[string]int{
+			"Will"                : 3,
+			"Ron"                : 3,
+			"Greg"                : 1,
+			"Steve"        : 1,
+			"Derek"        : 1,
+			"Cameron"        : 1,
+			"Brandon"        : 1,
+			"Bryant"        : 1,
+			"JoshT"        : 1,
+			"JoshL"        : 1,
+		}
+
+		for i := 0; i < 10; i++ {
+			// Display integer.
+			player := pickPicker(draftees, m)
+			fmt.Println(player)
+			draftOrder[i] = player
+		}
+
+		if draftOrder[0] == "Will" || draftOrder[0] == "Ron"{
+			tallies[0] = tallies[0] + 1
+		}
+		if draftOrder[1] == "Will" || draftOrder[1] == "Ron"{
+			tallies[1] = tallies[1] + 1
+		}
+
+		fmt.Println("Showing draft order")
+		for i := 0; i < 10; i++ {
+			fmt.Print(draftOrder[i], " ")
+
+		}
 	}
 
-	for i := 0; i < 10; i++ {
-		// Display integer.
-		player := pickPicker(draftees, m)
-		fmt.Println(player)
-		draftOrder[i] = player
-	}
-
-	fmt.Println("showing draftorder")
-	for i := 0; i < 10; i++ {
-		fmt.Print(draftOrder[i])
-
-	}
-
+	fmt.Println("tallies[0]: ", tallies[0], "tallies[1]: ", tallies[1])
 
 }
 func createCase(drafteesLeft []string, m map[string]int ) (int, []string){
