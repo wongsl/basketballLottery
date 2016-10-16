@@ -36,7 +36,7 @@ func main(){
 
 	fmt.Println("showing draftorder")
 	for i := 0; i < 10; i++ {
-		fmt.Println(draftOrder[i])
+		fmt.Print(draftOrder[i])
 
 	}
 
