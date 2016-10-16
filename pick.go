@@ -10,8 +10,10 @@ import (
 type playerMap map[string]int
 
 func main(){
+	var finalDraftOrder [10]string
 	var draftOrder [10]string
 	rand.Seed(time.Now().UTC().UnixNano())
+	selectionNumber := rand.Intn(1000)
 	var tallies [2]int
 	for i := 0; i < 1000; i++ {
 		draftees := []string{"Will", "Ron", "Greg", "Steve", "Derek", "Cameron", "Brandon", "Bryant", "JoshT", "JoshL"}
@@ -48,9 +50,14 @@ func main(){
 			fmt.Print(draftOrder[i], " ")
 
 		}
+		if i == selectionNumber{
+			finalDraftOrder = draftOrder
+		}
 	}
 
 	fmt.Println("tallies[0]: ", tallies[0], "tallies[1]: ", tallies[1])
+	fmt.Println("tallies[0]: ", tallies[0], "tallies[1]: ", tallies[1])
+	fmt.Print("selectionNumber: ", selectionNumber, " Final Draft Order: ", finalDraftOrder)
 
 }
 func createCase(drafteesLeft []string, m map[string]int ) (int, []string){
